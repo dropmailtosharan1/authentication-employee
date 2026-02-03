@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
@@ -12,23 +12,25 @@ import { EmployeeService } from '../../services/employee.service';
   standalone: true,
   imports: [ReactiveFormsModule, MatCardModule, MatInputModule, MatButtonModule, MatSnackBarModule],
   templateUrl: './employee-form.component.html',
-  styleUrl: './employee-form.component.scss'
+  styleUrls: ['./employee-form.component.scss']
 })
 export class EmployeeFormComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private route: ActivatedRoute, private svc: EmployeeService, private router: Router, private snack: MatSnackBar) {}
 
-  form = this.fb.group({
-    firstName: ['', Validators.required],
-    lastName: ['', Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    position: [''],
-    phone: ['']
-  });
+  form!: FormGroup;
   isEdit = false;
   id?: number;
 
   ngOnInit() {
+    this.form = this.fb.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
+      position: [''],
+      phone: ['']
+    });
+
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id) {
@@ -41,12 +43,12 @@ export class EmployeeFormComponent implements OnInit {
 
   save() {
     if (this.isEdit && this.id) {
-      this.svc.update(this.id, this.form.value).subscribe(() => {
+      this.svc.update(this.id, this.form.value as any).subscribe(() => {
         this.snack.open('Updated', 'Close', { duration: 2000 });
         this.router.navigate(['/home']);
       });
     } else {
-      this.svc.create(this.form.value).subscribe(() => {
+      this.svc.create(this.form.value as any).subscribe(() => {
         this.snack.open('Created', 'Close', { duration: 2000 });
         this.router.navigate(['/home']);
       });

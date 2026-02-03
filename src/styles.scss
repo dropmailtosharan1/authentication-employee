@@ -9,3 +9,11 @@ body {
 body {
   font-family: Roboto, "Helvetica Neue", Arial, sans-serif;
 }
+
+/* src/styles.scss */
+// @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+// @use '~@angular/material' as mat;
+body { margin: 0; font-family: Roboto, "Helvetica Neue", Arial; }
+@media (max-width: 600px) {
+  mat-card.auth-card { margin: 8px; }
+}
