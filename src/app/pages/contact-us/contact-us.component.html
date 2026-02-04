@@ -1,0 +1,72 @@
+<div class="form-wrapper">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" class="form-grid">
+        <mat-form-field class="half-width">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" required>
+            @if (form.get('name')?.hasError('required')) {
+            <mat-error>
+                Name is required
+            </mat-error>
+            }
+        </mat-form-field>
+        <mat-form-field class="half-width">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" required type="email">
+            @if (form.get('email')?.hasError('required')) {
+            <mat-error>
+                Email is required
+            </mat-error>
+            }
+            @if (form.get('email')?.hasError('email')) {
+            <mat-error>
+                Please enter a valid email
+            </mat-error>
+            }
+
+        </mat-form-field>
+        <mat-form-field class="full-width">
+            <mat-label>Message</mat-label>
+            <textarea matInput formControlName="message"></textarea>
+        </mat-form-field>
+
+        <mat-form-field class="half-width">
+            <mat-label>Topic</mat-label>
+            <mat-select formControlName="topic">
+                <mat-option value="support">Support</mat-option>
+                <mat-option value="sales">Sales</mat-option>
+                <mat-option value="feedback">Feedback</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+
+        <div class="half-width">
+            <label>Priority</label>
+            <mat-radio-group formControlName="priority">
+                <mat-radio-button value="low">Low</mat-radio-button>
+                <mat-radio-button value="medium">Medium</mat-radio-button>
+                <mat-radio-button value="high">High</mat-radio-button>
+            </mat-radio-group>
+        </div>
+
+        <div class="half-width">
+            <mat-checkbox formControlName="subscribe">
+                Subscribe to updates
+            </mat-checkbox>
+        </div>
+
+
+        <mat-form-field class="half-width">
+            <mat-label>Preferred Contact Date</mat-label>
+            <input matInput [matDatepickerFilter]="weekendFilter" [matDatepicker]="picker" formControlName="contactDate">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <!--Version 20 : matFab  -- Version 19 : mat-fab-->
+        <button class="submit-button" mat-fab extended type="submit" [disabled]="form.invalid">
+            <mat-icon>send</mat-icon>
+            Submit
+        </button>
+    </form>
+</div>

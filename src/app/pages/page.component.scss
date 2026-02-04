@@ -1,0 +1,54 @@
+@use '@angular/material' as mat;
+
+.toolbar {
+    @include mat.toolbar-overrides((container-background-color: var(--mat-sys-primary),
+            container-text-color: var(--mat-sys-on-primary),
+        ));
+}
+
+.toolbar-title {
+    margin-left: 1rem;
+}
+
+.sidenav-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    mat-sidenav {
+        @include mat.sidenav-overrides((container-shape: 0px));
+    }
+}
+
+.setting-list-item {
+    @include mat.list-overrides((list-item-two-line-container-height: 80px));
+}
+
+.mainnav {
+    width: 300px;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+a[matListItemTitle] {
+    text-decoration: none;
+}
+
+.spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: var(--mat-sys-tertiary-fixed);
+    opacity: 0.6;
+}

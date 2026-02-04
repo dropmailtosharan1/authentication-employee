@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Edit Profile</h2>
+<form [formGroup]="form" (ngSubmit)="save()">
+    <mat-dialog-content class="form-grid">
+        <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name">
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="fill">
+            <mat-label>Bio</mat-label>
+            <textarea matInput formControlName="bio"></textarea>
+        </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button type="submit" mat-button>Update</button>
+    </mat-dialog-actions>
+</form>

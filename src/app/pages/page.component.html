@@ -1,0 +1,89 @@
+<mat-sidenav-container class="sidenav-container">
+	<mat-sidenav class="mainnav" mode="side" #mainnav opened>
+		<mat-toolbar class="toolbar">
+			<span>Menu</span>
+		</mat-toolbar>
+		<mat-nav-list role="list">
+			<mat-list-item>
+				<mat-icon matListItemIcon>dashboard</mat-icon>
+				<a matListItemTitle routerLink="">Dashboard</a>
+			</mat-list-item>
+			<mat-list-item>
+				<mat-icon matListItemIcon>person</mat-icon>
+				<a matListItemTitle routerLink="/user">User Profile</a>
+			</mat-list-item>
+			<mat-list-item>
+				<mat-icon matListItemIcon>save</mat-icon>
+				<a matListItemTitle routerLink="/data">Data Display</a>
+			</mat-list-item>
+			<mat-list-item>
+				<mat-icon matListItemIcon>task</mat-icon>
+				<a matListItemTitle routerLink="/mini-dashboard">Mini Dashboard</a>
+			</mat-list-item>
+
+			<mat-list-item>
+				<mat-icon matListItemIcon>contact_mail</mat-icon>
+				<a matListItemTitle routerLink="/contact">Contact Us</a>
+			</mat-list-item>
+		</mat-nav-list>
+	</mat-sidenav>
+	<mat-sidenav mode="over" #setting position="end">
+		<mat-toolbar class="toolbar">
+			<span>Settings</span>
+		</mat-toolbar>
+
+		 <mat-list role="list">
+			<mat-list-item class="setting-list-item" role="listitem">
+				<h4 matListItemTitle>Select a theme</h4>
+				<mat-radio-group [(ngModel)]="selectedColor" (change)="themeService.setColor($event.value)">
+					<mat-radio-button value="green">Green</mat-radio-button>
+					<mat-radio-button value="red">Red</mat-radio-button>
+					<mat-radio-button value="blue">Blue</mat-radio-button>
+				</mat-radio-group>
+			</mat-list-item>
+			<mat-list-item class="setting-list-item" role="listitem">
+				<h4 matListItemTitle>Select a mode</h4>
+				<mat-radio-group [(ngModel)]="selectedMode" (change)="themeService.setMode($event.value)">
+					<mat-radio-button value="light">Light Mode</mat-radio-button>
+					<mat-radio-button value="dark">Dark Mode</mat-radio-button>
+				</mat-radio-group>
+			</mat-list-item>
+			<mat-list-item class="setting-list-item" role="listitem">
+				<mat-slide-toggle (change)="loaderService.toggleSpinner($event.checked)" labelPosition="before">
+					Toggle progress spinner
+				</mat-slide-toggle>
+			</mat-list-item>
+			<mat-list-item class="setting-list-item" role="listitem">
+				<mat-slide-toggle (change)="loaderService.toggleProgressBar($event.checked)" labelPosition="before">
+					Toggle progress bar
+				</mat-slide-toggle>
+			</mat-list-item>
+		</mat-list> 
+
+	</mat-sidenav>
+	 <section>
+		@if (loaderService.showSpinner()) {
+		<div class="spinner-overlay">
+			<mat-spinner></mat-spinner>
+		</div>
+		}
+
+		<mat-toolbar class="toolbar">
+			<button mat-mini-fab (click)="mainnav.toggle()">
+				<mat-icon>menu</mat-icon>
+			</button>
+			<span class="toolbar-title">{{ breadcrumb }}</span>
+			<span class="spacer"></span>
+			<button mat-mini-fab (click)="setting.toggle()">
+				<mat-icon>tune</mat-icon>
+			</button>
+		</mat-toolbar>
+
+		@if (loaderService.showProgressBar()) {
+		<mat-progress-bar class="theme-builder" mode="indeterminate"></mat-progress-bar>
+		}
+
+		<router-outlet></router-outlet>
+	</section> 
+</mat-sidenav-container>
+
