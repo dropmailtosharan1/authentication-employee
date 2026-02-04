@@ -7,18 +7,18 @@ import { EmployeeDetailComponent } from './pages/employee-detail/employee-detail
 import { AuthGuard } from './guards/auth.guard';
 
 export const ROUTES: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
-  {
-    path: 'home',
-    canActivate: [AuthGuard],
-    children: [
-      { path: '', component: EmployeeListComponent },
-      { path: 'new', component: EmployeeFormComponent },
-      { path: 'edit/:id', component: EmployeeFormComponent },
-      { path: 'view/:id', component: EmployeeDetailComponent },
-    ],
-  },
-  { path: '**', redirectTo: 'login' },
+  // { path: '', redirectTo: 'login', pathMatch: 'full' },
+  // { path: 'login', component: LoginComponent },
+  // { path: 'signup', component: SignupComponent },
+  // {
+  //   path: 'home',
+  //   canActivate: [AuthGuard],
+  //   children: [
+  //     { path: '', component: EmployeeListComponent },
+  //     { path: 'new', component: EmployeeFormComponent },
+  //     { path: 'edit/:id', component: EmployeeFormComponent },
+  //     { path: 'view/:id', component: EmployeeDetailComponent },
+  //   ],
+  // },
+  // { path: '**', redirectTo: 'login' },
 ];
