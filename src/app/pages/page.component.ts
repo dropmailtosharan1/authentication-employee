@@ -24,8 +24,8 @@ import { filter } from 'rxjs';
   styleUrl: './page.component.scss'
 })
 export class PageComponent {
-  breadcrumb = 'Dashboard'; // default fallback
-  selectedColor: 'green' | 'red' | 'blue' = 'green'; // default
+  breadcrumb = 'Dashboard';
+  selectedColor: 'green' | 'red' | 'blue' = 'green'; 
   selectedMode: 'light' | 'dark' = 'light';
 
 

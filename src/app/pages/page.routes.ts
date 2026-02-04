@@ -9,28 +9,33 @@ export const routes: Routes = [
             {
                 path: '',
                 loadComponent: () => import('./dashboard/dashboard.component').then(c => c.DashboardComponent),
-                data: { breadcrumb: 'Dashboard' }
+                data: { currentPath: 'Dashboard' }
             },
             {
                 path: 'contact',
                 loadComponent: () => import('./contact-us/contact-us.component').then(c => c.ContactUsComponent),
-                data: { breadcrumb: 'Contact Us' }
+                data: { currentPath: 'Contact Us' }
             },
             {
                 path: 'user',
                 loadComponent: () => import('./user-profile/user-profile.component').then(c => c.UserProfileComponent),
-                data: { breadcrumb: 'User Profile Manager' }
+                data: { currentPath: 'User Profile' }
             },
             {
                 path: 'data',
                 loadComponent: () => import('./data-display/data-display.component').then(c => c.DataDisplayComponent),
-                data: { breadcrumb: 'Data Display' }
+                data: { currentPath: 'Data Display' }
             },
             {
                 path: 'mini-dashboard',
                 loadComponent: () => import('./mini-dashboard/mini-dashboard.component').then(c => c.MiniDashboardComponent),
-                data: { breadcrumb: 'mini-dashboard' }
+                data: { currentPath: 'mini-dashboard' }
             },
+            {
+              path: 'in-progress',
+              loadComponent: () => import('./in-progress/in-progress.component').then(c => c.InProgressComponent),
+              data: { currentPath: 'In Progress' }
+            }
         ]
     }
 ];
