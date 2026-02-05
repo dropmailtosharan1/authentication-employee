@@ -39,7 +39,7 @@ export class PageComponent {
           this.currentPath = data['currentPath'] || 'Dashboard';
           this.title.setTitle(this.currentPath);
         });
-      });
+      }); 
  
     this.selectedColor = this.themeService.color();
     this.selectedMode = this.themeService.mode()
