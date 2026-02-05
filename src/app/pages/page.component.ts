@@ -24,7 +24,7 @@ import { filter } from 'rxjs';
   styleUrl: './page.component.scss'
 })
 export class PageComponent {
-  breadcrumb = 'Dashboard';
+  currentPath = 'Dashboard';
   selectedColor: 'green' | 'red' | 'blue' = 'green'; 
   selectedMode: 'light' | 'dark' = 'light';
 
@@ -36,11 +36,11 @@ export class PageComponent {
       .subscribe(() => {
         const child = this.getChild(this.route);
         child.data.subscribe(data => {
-          this.breadcrumb = data['breadcrumb'] || 'Dashboard';
-          this.title.setTitle(this.breadcrumb);
+          this.currentPath = data['currentPath'] || 'Dashboard';
+          this.title.setTitle(this.currentPath);
         });
       });
-
+ 
     this.selectedColor = this.themeService.color();
     this.selectedMode = this.themeService.mode()
   }
